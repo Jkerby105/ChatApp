@@ -8,12 +8,13 @@ import { LoginPage } from "./pages/LoginPage";
 import { SettingPage } from "./pages/SettingPage";
 import { SignUpPage } from "./pages/SignUpPage";
 import { useAuthStore } from "./store/useAuthStore";
+import {useThemeStore} from "./store/useThemeStore"
 import { Loader } from "lucide-react";
-import {Toaster} from "react-hot-toast"
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
-
+  const {theme} =  useThemeStore();
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -28,7 +29,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div data-theme={theme}>
       <Navbar />
       <Routes>
         <Route
@@ -50,7 +51,7 @@ const App = () => {
         />
       </Routes>
 
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };
